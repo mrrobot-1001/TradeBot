@@ -65,7 +65,7 @@ class BinanceResponseError(Exception):
 # ---------------------------------------------------------------------------
 
 DEFAULT_BASE_URL = "https://demo-fapi.binance.com"
-REQUEST_TIMEOUT = 10  # seconds
+REQUEST_TIMEOUT = (3.0, 7.0)  # (connect_timeout, read_timeout) to prevent proxy hanging
 MAX_RETRIES = 2
 RETRY_DELAY = 1  # seconds
 
