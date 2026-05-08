@@ -1,0 +1,110 @@
+2026-05-08 19:20:57 | INFO     | trading_bot.client   | BinanceClient initialized — base_url=https://testnet.binancefuture.com, api_key=test_api…
+2026-05-08 19:20:57 | DEBUG    | trading_bot.client   | >>> POST https://testnet.binancefuture.com/fapi/v1/order params={'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'MARKET', 'quantity': 0.01, 'timestamp': 1778248257661, 'signature': 'a029e48f664004fa21c6bdff2552b2df662d2777412fbadffc62e566d8b127bf'}
+2026-05-08 19:20:57 | DEBUG    | trading_bot.client   | <<< POST /fapi/v1/order status=200 body={"orderId": 12345, "status": "FILLED", "symbol": "BTCUSDT"}
+2026-05-08 19:20:57 | INFO     | trading_bot.client   | API call succeeded — POST /fapi/v1/order (attempt 1)
+2026-05-08 19:20:57 | INFO     | trading_bot.client   | BinanceClient initialized — base_url=https://testnet.binancefuture.com, api_key=test_api…
+2026-05-08 19:20:57 | DEBUG    | trading_bot.client   | >>> POST https://testnet.binancefuture.com/fapi/v1/order params={'symbol': 'INVALID', 'side': 'BUY', 'type': 'MARKET', 'quantity': 0.01, 'timestamp': 1778248257662, 'signature': '8c25caafc74fe9fcc8f8174942fdbe6f7e5a41dc07e3db322957c2872e045c73'}
+2026-05-08 19:20:57 | DEBUG    | trading_bot.client   | <<< POST /fapi/v1/order status=400 body={"code": -1121, "msg": "Invalid symbol."}
+2026-05-08 19:20:57 | INFO     | trading_bot.client   | BinanceClient initialized — base_url=https://testnet.binancefuture.com, api_key=test_api…
+2026-05-08 19:20:57 | DEBUG    | trading_bot.client   | >>> POST https://testnet.binancefuture.com/fapi/v1/order params={'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'MARKET', 'quantity': 0.01, 'timestamp': 1778248257663, 'signature': '3c50cf20ec5a82be404f8796ac234aa33a6485e69066dcc4fcaf60e26b8ab0f1'}
+2026-05-08 19:20:57 | DEBUG    | trading_bot.client   | <<< POST /fapi/v1/order status=200 body=not json
+2026-05-08 19:20:57 | INFO     | trading_bot.client   | BinanceClient initialized — base_url=https://testnet.binancefuture.com, api_key=test_api…
+2026-05-08 19:20:57 | DEBUG    | trading_bot.client   | >>> POST https://testnet.binancefuture.com/fapi/v1/order params={'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'MARKET', 'quantity': 0.01, 'timestamp': 1778248257664, 'signature': '76ff76cb3f2e267915be6e80adbea32394c68673a40a182745c10b797ce0c0e3'}
+2026-05-08 19:20:57 | WARNING  | trading_bot.client   | Network error on attempt 1/2: Connection refused
+2026-05-08 19:20:58 | WARNING  | trading_bot.client   | Network error on attempt 2/2: Connection refused
+2026-05-08 19:20:58 | INFO     | trading_bot.client   | BinanceClient initialized — base_url=https://testnet.binancefuture.com, api_key=test_api…
+2026-05-08 19:20:58 | DEBUG    | trading_bot.client   | >>> POST https://testnet.binancefuture.com/fapi/v1/order params={'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'MARKET', 'quantity': 0.01, 'timestamp': 1778248258676, 'signature': 'c2f256515a798ec1c02983300b0aba8bfa550e4721059ebfac03ddbed7ee80c7'}
+2026-05-08 19:20:58 | WARNING  | trading_bot.client   | Network error on attempt 1/2: Request timed out
+2026-05-08 19:20:59 | WARNING  | trading_bot.client   | Network error on attempt 2/2: Request timed out
+2026-05-08 19:20:59 | INFO     | trading_bot.client   | BinanceClient initialized — base_url=https://testnet.binancefuture.com, api_key=test_api…
+2026-05-08 19:21:11 | ERROR    | trading_bot.cli      | CLI failure: --price is required for LIMIT orders.
+2026-05-08 19:28:37 | INFO     | trading_bot.client   | BinanceClient initialized — base_url=https://testnet.binancefuture.com, api_key=EOS8XJFu…
+2026-05-08 19:28:37 | INFO     | trading_bot.orders   | Placing MARKET BUY order — symbol=BTCUSDT qty=0.01
+2026-05-08 19:28:37 | DEBUG    | trading_bot.client   | >>> POST https://testnet.binancefuture.com/fapi/v1/order params={'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'MARKET', 'quantity': 0.01, 'timestamp': 1778248717138, 'signature': '4b394b7ac685a9b26977e39d3467646b42271d8f6bd87f2ed0e8e300a4bafe11'}
+2026-05-08 19:28:37 | DEBUG    | trading_bot.client   | <<< POST /fapi/v1/order status=401 body={"code":-2015,"msg":"Invalid API-key, IP, or permissions for action"}
+2026-05-08 19:28:37 | ERROR    | trading_bot.cli      | Binance API error during order placement
+Traceback (most recent call last):
+  File "/Users/mrrobot/Projects/Trading bot/cli.py", line 182, in place_order
+    result = place_market_order(client, v_symbol, v_side, v_quantity)
+  File "/Users/mrrobot/Projects/Trading bot/bot/orders.py", line 79, in place_market_order
+    raw = client.place_order(params)
+  File "/Users/mrrobot/Projects/Trading bot/bot/client.py", line 133, in place_order
+    return self._signed_request("POST", endpoint, params)
+  File "/Users/mrrobot/Projects/Trading bot/bot/client.py", line 164, in _signed_request
+    return self._execute(method, endpoint, signed_params)
+  File "/Users/mrrobot/Projects/Trading bot/bot/client.py", line 225, in _execute
+    raise BinanceAPIError(
+bot.client.BinanceAPIError: API Error [code -2015]: Invalid API-key, IP, or permissions for action
+2026-05-08 19:28:37 | ERROR    | trading_bot.cli      | CLI failure: API Error [code -2015]: Invalid API-key, IP, or permissions for action
+2026-05-08 19:30:28 | INFO     | trading_bot.client   | BinanceClient initialized — base_url=https://demo-fapi.binance.com, api_key=zTw2PXM8…
+2026-05-08 19:30:28 | INFO     | trading_bot.orders   | Placing MARKET BUY order — symbol=BTCUSDT qty=0.01
+2026-05-08 19:30:28 | DEBUG    | trading_bot.client   | >>> POST https://demo-fapi.binance.com/fapi/v1/order params={'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'MARKET', 'quantity': 0.01, 'timestamp': 1778248828575, 'signature': 'f273ef87c7b02428195ae2e1256bd9409d4e016bd0b4d3024bb12ffa033b4237'}
+2026-05-08 19:30:29 | DEBUG    | trading_bot.client   | <<< POST /fapi/v1/order status=401 body={"code":-2015,"msg":"Invalid API-key, IP, or permissions for action"}
+2026-05-08 19:30:29 | ERROR    | trading_bot.cli      | Binance API error during order placement
+Traceback (most recent call last):
+  File "/Users/mrrobot/Projects/Trading bot/cli.py", line 182, in place_order
+    result = place_market_order(client, v_symbol, v_side, v_quantity)
+  File "/Users/mrrobot/Projects/Trading bot/bot/orders.py", line 79, in place_market_order
+    raw = client.place_order(params)
+  File "/Users/mrrobot/Projects/Trading bot/bot/client.py", line 133, in place_order
+    return self._signed_request("POST", endpoint, params)
+  File "/Users/mrrobot/Projects/Trading bot/bot/client.py", line 164, in _signed_request
+    return self._execute(method, endpoint, signed_params)
+  File "/Users/mrrobot/Projects/Trading bot/bot/client.py", line 225, in _execute
+    raise BinanceAPIError(
+bot.client.BinanceAPIError: API Error [code -2015]: Invalid API-key, IP, or permissions for action
+2026-05-08 19:30:29 | ERROR    | trading_bot.cli      | CLI failure: API Error [code -2015]: Invalid API-key, IP, or permissions for action
+2026-05-08 19:39:07 | INFO     | trading_bot.client   | BinanceClient initialized — base_url=https://demo-fapi.binance.com, api_key=ijV9IdnY…
+2026-05-08 19:39:07 | INFO     | trading_bot.orders   | Placing MARKET BUY order — symbol=BTCUSDT qty=0.01
+2026-05-08 19:39:07 | DEBUG    | trading_bot.client   | >>> POST https://demo-fapi.binance.com/fapi/v1/order params={'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'MARKET', 'quantity': 0.01, 'timestamp': 1778249347996, 'signature': '8eaadeb4d38f143514e6dc84d7fd89256ae525a90e1cdbbb6dae2182e166eb85'}
+2026-05-08 19:39:08 | DEBUG    | trading_bot.client   | <<< POST /fapi/v1/order status=200 body={"orderId":13120863654,"symbol":"BTCUSDT","status":"NEW","clientOrderId":"RSM6MJp9Ib7vssAuullq3d","price":"0.00","avgPrice":"0.00","origQty":"0.0100","executedQty":"0.0000","cumQty":"0.0000","cumQuote":"0.000000","timeInForce":"GTC","type":"MARKET","reduceOnly":false,"closePosition":false,"side":"BUY","positionSide":"BOTH","stopPrice":"0.00","workingType":"CONTRACT_PRICE","priceProtect":false,"origType":"MARKET","priceMatch":"NONE","selfTradePreventionMode":"EXPIRE_MAKER","goodTillDate":0,"updateTime":1778249349045}
+2026-05-08 19:39:08 | INFO     | trading_bot.client   | API call succeeded — POST /fapi/v1/order (attempt 1)
+2026-05-08 19:39:08 | INFO     | trading_bot.orders   | MARKET order result — orderId=13120863654 status=NEW executedQty=0.0000
+2026-05-08 19:39:08 | INFO     | trading_bot.cli      | Order placed successfully — orderId=13120863654
+2026-05-08 19:39:14 | INFO     | trading_bot.client   | BinanceClient initialized — base_url=https://demo-fapi.binance.com, api_key=ijV9IdnY…
+2026-05-08 19:39:14 | INFO     | trading_bot.orders   | Placing LIMIT SELL order — symbol=BTCUSDT qty=0.01 price=105000.0 tif=GTC
+2026-05-08 19:39:14 | DEBUG    | trading_bot.client   | >>> POST https://demo-fapi.binance.com/fapi/v1/order params={'symbol': 'BTCUSDT', 'side': 'SELL', 'type': 'LIMIT', 'quantity': 0.01, 'price': 105000.0, 'timeInForce': 'GTC', 'timestamp': 1778249354663, 'signature': '1f47c4773e4c49128de8b5f5bf70a976eb0a9b1521c7e326173e86b03805accd'}
+2026-05-08 19:39:15 | DEBUG    | trading_bot.client   | <<< POST /fapi/v1/order status=200 body={"orderId":13120863812,"symbol":"BTCUSDT","status":"NEW","clientOrderId":"TAPSdXT0NsjYYQg59mL48C","price":"105000.00","avgPrice":"0.00","origQty":"0.0100","executedQty":"0.0000","cumQty":"0.0000","cumQuote":"0.000000","timeInForce":"GTC","type":"LIMIT","reduceOnly":false,"closePosition":false,"side":"SELL","positionSide":"BOTH","stopPrice":"0.00","workingType":"CONTRACT_PRICE","priceProtect":false,"origType":"LIMIT","priceMatch":"NONE","selfTradePreventionMode":"EXPIRE_MAKER","goodTillDate":0,"updateTime":1778249355475}
+2026-05-08 19:39:15 | INFO     | trading_bot.client   | API call succeeded — POST /fapi/v1/order (attempt 1)
+2026-05-08 19:39:15 | INFO     | trading_bot.orders   | LIMIT order result — orderId=13120863812 status=NEW executedQty=0.0000
+2026-05-08 19:39:15 | INFO     | trading_bot.cli      | Order placed successfully — orderId=13120863812
+2026-05-08 19:40:21 | INFO     | trading_bot.client   | BinanceClient initialized — base_url=https://demo-fapi.binance.com, api_key=ijV9IdnY…
+2026-05-08 19:40:21 | INFO     | trading_bot.client   | BinanceClient initialized — base_url=https://demo-fapi.binance.com, api_key=key…
+2026-05-08 19:40:21 | INFO     | trading_bot.client   | BinanceClient initialized — base_url=https://testnet.binancefuture.com, api_key=test_api…
+2026-05-08 19:40:21 | DEBUG    | trading_bot.client   | >>> POST https://testnet.binancefuture.com/fapi/v1/order params={'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'MARKET', 'quantity': 0.01, 'timestamp': 1778249421058, 'signature': '6cb5c6c86b5fcbce42f6b659929fa69a14f35f74b94eda42dcb27aca7416d0fb'}
+2026-05-08 19:40:21 | DEBUG    | trading_bot.client   | <<< POST /fapi/v1/order status=200 body={"orderId": 12345, "status": "FILLED", "symbol": "BTCUSDT"}
+2026-05-08 19:40:21 | INFO     | trading_bot.client   | API call succeeded — POST /fapi/v1/order (attempt 1)
+2026-05-08 19:40:21 | INFO     | trading_bot.client   | BinanceClient initialized — base_url=https://testnet.binancefuture.com, api_key=test_api…
+2026-05-08 19:40:21 | DEBUG    | trading_bot.client   | >>> POST https://testnet.binancefuture.com/fapi/v1/order params={'symbol': 'INVALID', 'side': 'BUY', 'type': 'MARKET', 'quantity': 0.01, 'timestamp': 1778249421059, 'signature': '7851795316619203330d04625d2c4b6f15c3401b585b84dac7a5d04e974a6168'}
+2026-05-08 19:40:21 | DEBUG    | trading_bot.client   | <<< POST /fapi/v1/order status=400 body={"code": -1121, "msg": "Invalid symbol."}
+2026-05-08 19:40:21 | INFO     | trading_bot.client   | BinanceClient initialized — base_url=https://testnet.binancefuture.com, api_key=test_api…
+2026-05-08 19:40:21 | DEBUG    | trading_bot.client   | >>> POST https://testnet.binancefuture.com/fapi/v1/order params={'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'MARKET', 'quantity': 0.01, 'timestamp': 1778249421060, 'signature': '2c4b52bab50957de37d2b77d8783b2dbcb97c08e672a708d59371a325e6ad994'}
+2026-05-08 19:40:21 | DEBUG    | trading_bot.client   | <<< POST /fapi/v1/order status=200 body=not json
+2026-05-08 19:40:21 | INFO     | trading_bot.client   | BinanceClient initialized — base_url=https://testnet.binancefuture.com, api_key=test_api…
+2026-05-08 19:40:21 | DEBUG    | trading_bot.client   | >>> POST https://testnet.binancefuture.com/fapi/v1/order params={'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'MARKET', 'quantity': 0.01, 'timestamp': 1778249421061, 'signature': '4bcf67a11110d9b5ca24be619f667118f400a377c6424cd321b1d52b86c6f73b'}
+2026-05-08 19:40:21 | WARNING  | trading_bot.client   | Network error on attempt 1/2: Connection refused
+2026-05-08 19:40:22 | WARNING  | trading_bot.client   | Network error on attempt 2/2: Connection refused
+2026-05-08 19:40:22 | INFO     | trading_bot.client   | BinanceClient initialized — base_url=https://testnet.binancefuture.com, api_key=test_api…
+2026-05-08 19:40:22 | DEBUG    | trading_bot.client   | >>> POST https://testnet.binancefuture.com/fapi/v1/order params={'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'MARKET', 'quantity': 0.01, 'timestamp': 1778249422068, 'signature': '1e6f03b05af5fd5dd38432fea2268a7e61f54e7435fd385f320f47c8517cdbff'}
+2026-05-08 19:40:22 | WARNING  | trading_bot.client   | Network error on attempt 1/2: Request timed out
+2026-05-08 19:40:23 | WARNING  | trading_bot.client   | Network error on attempt 2/2: Request timed out
+2026-05-08 19:40:23 | INFO     | trading_bot.client   | BinanceClient initialized — base_url=https://testnet.binancefuture.com, api_key=test_api…
+2026-05-08 19:40:43 | INFO     | trading_bot.client   | BinanceClient initialized — base_url=https://testnet.binancefuture.com, api_key=test_api…
+2026-05-08 19:40:43 | DEBUG    | trading_bot.client   | >>> POST https://testnet.binancefuture.com/fapi/v1/order params={'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'MARKET', 'quantity': 0.01, 'timestamp': 1778249443120, 'signature': 'fde55eeee66b0355575b5aed7a10b61d422a869cf6b300f3414769a443dd71e1'}
+2026-05-08 19:40:43 | DEBUG    | trading_bot.client   | <<< POST /fapi/v1/order status=200 body={"orderId": 12345, "status": "FILLED", "symbol": "BTCUSDT"}
+2026-05-08 19:40:43 | INFO     | trading_bot.client   | API call succeeded — POST /fapi/v1/order (attempt 1)
+2026-05-08 19:40:43 | INFO     | trading_bot.client   | BinanceClient initialized — base_url=https://testnet.binancefuture.com, api_key=test_api…
+2026-05-08 19:40:43 | DEBUG    | trading_bot.client   | >>> POST https://testnet.binancefuture.com/fapi/v1/order params={'symbol': 'INVALID', 'side': 'BUY', 'type': 'MARKET', 'quantity': 0.01, 'timestamp': 1778249443121, 'signature': 'b567694a278b5898c18c450a4e9eb355d83228aa95fbfe777cf62a056f1ce44d'}
+2026-05-08 19:40:43 | DEBUG    | trading_bot.client   | <<< POST /fapi/v1/order status=400 body={"code": -1121, "msg": "Invalid symbol."}
+2026-05-08 19:40:43 | INFO     | trading_bot.client   | BinanceClient initialized — base_url=https://testnet.binancefuture.com, api_key=test_api…
+2026-05-08 19:40:43 | DEBUG    | trading_bot.client   | >>> POST https://testnet.binancefuture.com/fapi/v1/order params={'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'MARKET', 'quantity': 0.01, 'timestamp': 1778249443123, 'signature': 'e9ec793b09c7ba3b8c8e8f950425f8440f7d5c513450cd67895c32733cfe5d82'}
+2026-05-08 19:40:43 | DEBUG    | trading_bot.client   | <<< POST /fapi/v1/order status=200 body=not json
+2026-05-08 19:40:43 | INFO     | trading_bot.client   | BinanceClient initialized — base_url=https://testnet.binancefuture.com, api_key=test_api…
+2026-05-08 19:40:43 | DEBUG    | trading_bot.client   | >>> POST https://testnet.binancefuture.com/fapi/v1/order params={'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'MARKET', 'quantity': 0.01, 'timestamp': 1778249443124, 'signature': '9c5361d1663a714f8b912b63ceac926f573181da4baf6dd908ada5aec574ae46'}
+2026-05-08 19:40:43 | WARNING  | trading_bot.client   | Network error on attempt 1/2: Connection refused
+2026-05-08 19:40:44 | WARNING  | trading_bot.client   | Network error on attempt 2/2: Connection refused
+2026-05-08 19:40:44 | INFO     | trading_bot.client   | BinanceClient initialized — base_url=https://testnet.binancefuture.com, api_key=test_api…
+2026-05-08 19:40:44 | DEBUG    | trading_bot.client   | >>> POST https://testnet.binancefuture.com/fapi/v1/order params={'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'MARKET', 'quantity': 0.01, 'timestamp': 1778249444130, 'signature': '6e965a563e886bc6099575432bd60fb110363bf3e4f7329847d7233c404053b6'}
+2026-05-08 19:40:44 | WARNING  | trading_bot.client   | Network error on attempt 1/2: Request timed out
+2026-05-08 19:40:45 | WARNING  | trading_bot.client   | Network error on attempt 2/2: Request timed out
+2026-05-08 19:40:45 | INFO     | trading_bot.client   | BinanceClient initialized — base_url=https://testnet.binancefuture.com, api_key=test_api…

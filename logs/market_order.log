@@ -1,0 +1,7 @@
+2026-05-08 19:39:07 | INFO     | trading_bot.client   | BinanceClient initialized — base_url=https://demo-fapi.binance.com, api_key=ijV9IdnY…
+2026-05-08 19:39:07 | INFO     | trading_bot.orders   | Placing MARKET BUY order — symbol=BTCUSDT qty=0.01
+2026-05-08 19:39:07 | DEBUG    | trading_bot.client   | >>> POST https://demo-fapi.binance.com/fapi/v1/order params={'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'MARKET', 'quantity': 0.01, 'timestamp': 1778249347996, 'signature': '***REDACTED***'}
+2026-05-08 19:39:08 | DEBUG    | trading_bot.client   | <<< POST /fapi/v1/order status=200 body={"orderId":13120863654,"symbol":"BTCUSDT","status":"NEW","clientOrderId":"RSM6MJp9Ib7vssAuullq3d","price":"0.00","avgPrice":"0.00","origQty":"0.0100","executedQty":"0.0000","cumQty":"0.0000","cumQuote":"0.000000","timeInForce":"GTC","type":"MARKET","reduceOnly":false,"closePosition":false,"side":"BUY","positionSide":"BOTH","stopPrice":"0.00","workingType":"CONTRACT_PRICE","priceProtect":false,"origType":"MARKET","priceMatch":"NONE","selfTradePreventionMode":"EXPIRE_MAKER","goodTillDate":0,"updateTime":1778249349045}
+2026-05-08 19:39:08 | INFO     | trading_bot.client   | API call succeeded — POST /fapi/v1/order (attempt 1)
+2026-05-08 19:39:08 | INFO     | trading_bot.orders   | MARKET order result — orderId=13120863654 status=NEW executedQty=0.0000
+2026-05-08 19:39:08 | INFO     | trading_bot.cli      | Order placed successfully — orderId=13120863654

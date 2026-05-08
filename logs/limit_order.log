@@ -1,0 +1,7 @@
+2026-05-08 19:39:14 | INFO     | trading_bot.client   | BinanceClient initialized — base_url=https://demo-fapi.binance.com, api_key=ijV9IdnY…
+2026-05-08 19:39:14 | INFO     | trading_bot.orders   | Placing LIMIT SELL order — symbol=BTCUSDT qty=0.01 price=105000.0 tif=GTC
+2026-05-08 19:39:14 | DEBUG    | trading_bot.client   | >>> POST https://demo-fapi.binance.com/fapi/v1/order params={'symbol': 'BTCUSDT', 'side': 'SELL', 'type': 'LIMIT', 'quantity': 0.01, 'price': 105000.0, 'timeInForce': 'GTC', 'timestamp': 1778249354663, 'signature': '***REDACTED***'}
+2026-05-08 19:39:15 | DEBUG    | trading_bot.client   | <<< POST /fapi/v1/order status=200 body={"orderId":13120863812,"symbol":"BTCUSDT","status":"NEW","clientOrderId":"TAPSdXT0NsjYYQg59mL48C","price":"105000.00","avgPrice":"0.00","origQty":"0.0100","executedQty":"0.0000","cumQty":"0.0000","cumQuote":"0.000000","timeInForce":"GTC","type":"LIMIT","reduceOnly":false,"closePosition":false,"side":"SELL","positionSide":"BOTH","stopPrice":"0.00","workingType":"CONTRACT_PRICE","priceProtect":false,"origType":"LIMIT","priceMatch":"NONE","selfTradePreventionMode":"EXPIRE_MAKER","goodTillDate":0,"updateTime":1778249355475}
+2026-05-08 19:39:15 | INFO     | trading_bot.client   | API call succeeded — POST /fapi/v1/order (attempt 1)
+2026-05-08 19:39:15 | INFO     | trading_bot.orders   | LIMIT order result — orderId=13120863812 status=NEW executedQty=0.0000
+2026-05-08 19:39:15 | INFO     | trading_bot.cli      | Order placed successfully — orderId=13120863812
