@@ -17,8 +17,61 @@ from bot.validators import (
     validate_time_in_force,
 )
 
+import concurrent.futures
+import random
+import requests
+
+class ProxyRotator:
+    _working_proxy = None
+    
+    @classmethod
+    def get_proxy(cls):
+        test_url = "https://demo-fapi.binance.com/fapi/v1/time"
+        if cls._working_proxy:
+            try:
+                proxies = {"http": cls._working_proxy, "https": cls._working_proxy}
+                requests.get(test_url, proxies=proxies, timeout=3)
+                return cls._working_proxy
+            except Exception:
+                cls._working_proxy = None
+
+        url = "https://raw.githubusercontent.com/TheSpeedX/PROXY-List/master/http.txt"
+        try:
+            proxies_text = requests.get(url, timeout=5).text
+            proxy_list = [p for p in proxies_text.strip().split('\n') if p]
+            random.shuffle(proxy_list)
+            proxy_list = proxy_list[:150]
+        except Exception:
+            return None
+
+        def test_proxy(p):
+            proxy_url = f"http://{p}"
+            proxies = {"http": proxy_url, "https": proxy_url}
+            try:
+                r = requests.get(test_url, proxies=proxies, timeout=(3, 3))
+                if r.status_code == 200:
+                    return proxy_url
+            except Exception:
+                pass
+            return None
+
+        with concurrent.futures.ThreadPoolExecutor(max_workers=50) as executor:
+            results = executor.map(test_proxy, proxy_list)
+            for r in results:
+                if r:
+                    cls._working_proxy = r
+                    return r
+        return None
+
 def place_order_gradio(symbol, side, order_type, qty, price, stop_price, tif):
     try:
+        # Dynamically fetch a working proxy to bypass the US geo-block
+        # Doing this inside the function ensures it runs in the background worker
+        proxy = ProxyRotator.get_proxy()
+        if proxy:
+            os.environ["HTTP_PROXY"] = proxy
+            os.environ["HTTPS_PROXY"] = proxy
+
         v_symbol = validate_symbol(symbol)
         v_side = validate_side(side)
         v_order_type = validate_order_type(order_type)
