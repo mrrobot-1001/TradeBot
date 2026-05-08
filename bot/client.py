@@ -105,6 +105,16 @@ class BinanceClient:
             "X-MBX-APIKEY": self.api_key,
         })
 
+        # Proxy support for geo-blocked environments like Hugging Face (US-East)
+        proxies = {}
+        if os.getenv("HTTP_PROXY"):
+            proxies["http"] = os.getenv("HTTP_PROXY")
+        if os.getenv("HTTPS_PROXY"):
+            proxies["https"] = os.getenv("HTTPS_PROXY")
+        if proxies:
+            self._session.proxies.update(proxies)
+            logger.info("Configured proxies: %s", proxies)
+
         logger.info(
             "BinanceClient initialized — base_url=%s, api_key=%s…",
             self.base_url,

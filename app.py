@@ -40,6 +40,16 @@ def place_order_gradio(symbol, side, order_type, qty, price, stop_price, tif):
     except ValueError as e:
         return f"❌ Validation Error: {str(e)}", None
     except BinanceAPIError as e:
+        if e.code == 0 and "restricted location" in str(e.message).lower():
+            err_msg = (
+                "❌ **GEO-BLOCK ERROR**: Binance Demo Trading blocks connections from Hugging Face's US-based servers.\n\n"
+                "**To fix this:**\n"
+                "1. Add a free HTTP proxy to your Space's Secrets.\n"
+                "2. Create two secrets: `HTTP_PROXY` and `HTTPS_PROXY`.\n"
+                "3. Set their values to your proxy URL (e.g. `http://proxy:port`).\n"
+                "4. Restart the Space."
+            )
+            return err_msg, None
         return f"❌ API Error [code {e.code}]: {e.message}", None
     except BinanceNetworkError as e:
         return f"❌ Network error: {e.reason}", None
@@ -51,6 +61,13 @@ def place_order_gradio(symbol, side, order_type, qty, price, stop_price, tif):
 with gr.Blocks(title="Binance Futures Testnet Bot") as demo:
     gr.Markdown("# 🤖 Binance Futures Demo Trading Bot")
     gr.Markdown("Place orders on the Binance Futures Demo Trading platform. Ensure you have the required secrets configured in the Space settings.")
+    
+    with gr.Accordion("⚠️ Important Note for Hugging Face Users", open=True):
+        gr.Markdown(
+            "Hugging Face Spaces are hosted on US servers, which are strictly geo-blocked by Binance. "
+            "If you receive a **'restricted location'** error, you must add `HTTP_PROXY` and `HTTPS_PROXY` "
+            "secrets in the Space Settings pointing to a non-US proxy server, or run this code locally."
+        )
     
     with gr.Row():
         with gr.Column():
