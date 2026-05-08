@@ -1,5 +1,9 @@
-import gradio as gr
 import os
+
+# Prevent Gradio internal localhost checks from being routed through the external proxy
+os.environ["NO_PROXY"] = "localhost,127.0.0.1,0.0.0.0"
+
+import gradio as gr
 import json
 from bot.client import BinanceClient, BinanceAPIError, BinanceNetworkError, BinanceResponseError
 from bot.orders import place_market_order, place_limit_order, place_stop_limit_order
